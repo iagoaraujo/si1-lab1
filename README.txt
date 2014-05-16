@@ -1,1 +1,1 @@
-O repositório si1-lab armazena o código de José Iago, referente ao Lab1 da disciplina de Sistemas de Informação 1.
+O repositório si1-lab armazena o código de José Iago, referente ao Lab1 da disciplina de Sistemas de Informação 1, do curso de CC da ufcg.
