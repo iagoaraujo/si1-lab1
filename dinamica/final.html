@@ -15,15 +15,51 @@
 
     <!-- Custom styles for this template -->
     <link href="jumbotron.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <script>
+	$(document).ready(function() {
+ 
+        $('#btn-transf').click(function(){
+            $('#aprender option:selected').each( function() {
+                    $('#aprendidos').append("<option value='"+$(this).val()+"'>"+$(this).text()+"</option>");
+                $(this).remove();
+            });
+        });
+        $('#btn-remove-aprender').click(function(){
+            $('#aprender option:selected').each( function() {
+                $(this).remove();
+            });
+        });
+		$('#btn-remove-aprendidos').click(function(){
+            $('#aprendidos option:selected').each( function() {
+                $(this).remove();
+            });
+        });
+		$('#btn-add-aprender').click(function(){
+		    if($(assunto).val().trim()!=""){
+				if(!existOnAprender($(assunto).val()) && !existOnAprendidos($(assunto).val())){
+					$('#aprender').append("<option value='"+$(assunto).val()+"'>"+$(assunto).val()+"</option>");
+				}
+			}
+		});
+		
+    });
+	
+	function existOnAprender(val) {
+		return $("#aprender option").filter(function() {
+					return this.value === val;
+				}).length !== 0;
+	}
+	
+	function existOnAprendidos(val) {
+		return $("#aprendidos option").filter(function() {
+					return this.value === val;
+				}).length !== 0;
+	}
+	
+	</script>
   </head>
 
   <body>
@@ -50,16 +86,47 @@
 		<p><a class="btn btn-primary btn-lg" role="button" href="index.html">Retornar ao início &raquo;</a></p>
       </div>
     </div>
-
-    <div class="container">
-        <h2>Cadastro efetuado com sucesso. Obrigado!</h2>
-    </div> <!-- /container -->
-
+	
+	<form class="form-horizontal" role="form" onsubmit="return false">
+  <div class="form-group">
+    <label for="assunto" class="col-sm-2 control-label">Tema</label>
+    <div class="col-sm-10">
+      <input class="form-control" id="assunto" placeholder="Digite um tema interessante da área">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button id="btn-add-aprender" class="btn btn-default" >Enter</button>
+    </div>
+  </div>
+</form>
+	
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="/dist/js/bootstrap.min.js"></script>
+
+
+    <div id="div-lists">
+	<div class="col-md-3">
+	<h3>Temas para aprender</h3>
+    <select name="temas-aprender" id="aprender" multiple size="6" style="width: 300px">
+    </select>
+	<input type="image" id="btn-remove-aprender" src="delete.png" width="15" height="15">
+	</div>
+	
+	<div class="col-md-3" style="text-align:center;">
+	<input id="btn-transf" type="image" src="to_right.png" width="70" height="80">
+	</div>
+	
+	<div class="col-md-3">
+	<h3>Temas aprendidos</h3>
+    <select name="temas-aprendidos" id="aprendidos" multiple size="6" style="width: 300px">
+    </select>
+	<input type="image" id="btn-remove-aprendidos" src="delete.png" width="15" height="15">
+	</div>
+	</div>
   </body>
 </html>

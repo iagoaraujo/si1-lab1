@@ -3,3 +3,21 @@ body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
+
+#div-lists{
+margin-left: 20%;
+}
+
+#btn-transf{
+margin-left: 100px;
+margin-right:40px;
+margin-top:100px;
+}
+
+h3{
+font-family:"Lucida Console";
+color:#300000;
+text-align:center;
+font-size: 30px;
+}
+
